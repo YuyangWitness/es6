@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/babel-core/browser.js"></script>
+	<script type="text/babel">
+		var total = 30;
+		var msg = passthru`The total is ${total} (${total*1.05} with tax)`;
+
+		function passthru(literals) {
+		  var result = '';
+		  var i = 0;
+
+
+
+		  while (i < literals.length) {
+		    result += literals[i++];
+		    console.log(result);
+		    if (i < arguments.length) {
+		      result += arguments[i];
+		      console.log(result);
+		    }
+		  }
+
+		  return result;
+		}
+
+		console.log(msg); // "The total is 30 (31.5 with tax)"
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

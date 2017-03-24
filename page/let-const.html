@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="node_modules/babel-core/browser.js"></script>
+	<script type="text/javascript">
+	</script>
+	<script type="text/babel">
+		const a = 1;
+		a = 2;
+		console.log(a); //const只读不能修改,作用于块级作用域，有暂时性死区特性
+
+		//let只能作用域该块级作用域，有暂时性死去的特性
+		//es6浏览器中的函数可以写在块级作用域中，就像加了一个let，但是es6规定不必遵循let,可以是var
+	</script>
+</head>
+<body>
+
+</body>
+</html>
