@@ -1,7 +1,9 @@
-var map = new Map();
-map.set("first","hello");
-map.set("sencond","world");
-
-for(let [key,value] of map){
-	console.log(key + " is " + value);
+function* test(){
+	yield "abc";
+	yield "def";
 }
+
+let t = test();
+
+let res1 = t.next();
+console.log(res1);

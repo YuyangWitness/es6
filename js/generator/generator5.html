@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function* foo(){
+			yield 1;
+			yield 2;
+			yield 3;
+			return 4;
+		}
+
+		console.log([...foo()]);//返回一个数组，foo的遍历器，不返回return的东西
+		
+		//这种方法会返回return
+		let f = foo();
+		console.log(f.next());
+		console.log(f.next());
+		console.log(f.next());	
+		console.log(f.next());
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function* objectEntries(obj){
+			let props = Reflect.ownKeys(obj);
+			console.log(props);
+			for(let key of props){//for..of遍历出的是value
+
+				yield [key,obj[key]];
+			}
+		}
+
+		obj = {a:12,b:14};
+		for(let[key,val] of objectEntries(obj)){
+			console.log(`${key}:${val}`);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	//for...of...可以自动遍历Generator函数时生成的Iterator对象
+		function* foo(){
+			yield 1;
+			yield 2;
+			yield 3;
+			yield 4;
+			yield 5;
+			yield 6;
+			return 7 //一旦done为ture,for...of就会终止，并且不包含该返回对象。所以7不会被返回
+		}
+
+		for(let v of foo()){
+			console.log(v);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//generator函数可以使用prototype,但是作为普通构造函数的话是不成功的，不能使用this
+		function* gen(){
+			this.a = 1;
+		}
+		let g = gen();
+		console.log(g.a); //undefined
+
+		gen.prototype.hello = function(){
+			console.log("hi");
+			console.log(this);
+		}
+
+		let g2 = gen();
+		console.log(g2 instanceof gen) //true  g2是gen的实例，同时也是遍历器
+		console.log(g2.hello());//hi   "this"返回不出来
+
+		//new gen();//gen is not a constructor
+
+		//可以使用this
+		function* F(){
+			this.a = 1;
+			yield this.b = 2;
+			yield this.c = 3;
+		}
+
+		let f = F.call(F.prototype);
+		console.log(f.next());
+		console.log(f.next());
+		console.log(f.next());
+
+		console.log(f.a);//1
+		console.log(f.b);//2
+		console.log(f.c);//3
+
+		//使用this和new
+		function* F2(){
+			this.a = 1;
+			yield this.b = 2;
+			yield this.c = 3;
+		}
+
+		function G(){
+			return F2.call(F2.prototype);
+		}
+
+		let g3 = new G();
+
+		g3.next();
+		g3.next();
+		g3.next();
+
+		console.log(g3.a);//1
+		console.log(g3.b);//2
+		console.log(g3.c);//3
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

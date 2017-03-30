@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function* gen(){
+			yield 1;
+			yield 2;
+			yield 3;
+			yield 4;
+		}
+
+		let g = gen();
+		console.log(g.next()); //Object {value: 1, done: false}
+		console.log(g.next());//{value: 2, done: false}
+		console.log(g.return("foo"));//{value: "foo", done: true}
+		console.log(g.next());//{value: undefined, done: true}
+
+		//return可以提前结束generator函数，并且可以返回带入的值，如果不提供参数就是undefined
+
+		//如果generator内部含有try....finally代码块，那么return的方法会推迟到finally代码完成之后再执行
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

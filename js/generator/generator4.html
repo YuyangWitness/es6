@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function* foo(){
+			yield 1;
+			yield 2;
+		}
+
+		function* bar(){
+			yield "A";
+			foo();
+			yield "B";
+		}
+
+		//直接调用foo会失效的，需要使用*yield
+		for(let i of bar()){
+			//console.log(i);// A B
+		}
+
+		//以下是使用*yield
+		function* bar2(){
+			yield "A";
+			yield* foo();
+			yield "B";
+		}
+		for(let i of bar4()){
+			console.log(i);// A 1 2 B 
+		}
+
+		//等同于
+		function* bar3(){
+			yield "A";
+			yield 1;
+			yield 2;
+			yield "B";
+		}
+
+		//也等同于
+		function* bar4(){
+			yield "A";
+			for(let i of foo()){
+				console.log(i);
+			}
+			yield "B";
+		}
+
+		//yield后面加上*就是返回一个遍历器对象
+		function* test1(){
+			yield 1;
+			yield* ["a","b","c"];
+			yield 2;
+		}
+		let t = test1();
+		console.log(t.next());//Object {value: 1, done: false}
+		console.log(t.next());//Object {value: "a", done: false}
+		console.log(t.next());//Object {value: "b", done: false}
+		console.log(t.next());//Object {value: "c", done: false}
+		console.log(t.next());//Object {value: 2, done: false}
+
+
+		function* genFuncWithReturn() {
+		  yield 'a';
+		  yield 'b';
+		  return 'The result';
+		}
+		function* logReturned(genObj) {
+			yield 1;
+		  let result = yield* genObj;
+		  console.log(result);
+		}
+		//结果会叠加，扩展符...会输出logReturned函数的遍历器对象[1] The result
+		//第二次扩展genFuncwithReturn函数['a','b']，然后两者叠加
+		console.log([...logReturned(genFuncWithReturn())]);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
