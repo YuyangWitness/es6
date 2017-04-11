@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*
+			async/await 和 Generator相比的好处
+			1、内置自执行器
+			2、返回promise
+			3、更好的语义和适用性
+		*/
+		async function test(){
+			let sum = await add();
+			//throw new Error("出错误了")
+			return sum;
+		}
+
+		function add(){
+			return 1+2;
+		}
+
+		//可以catch错误
+		test().then((rs) => console.log(rs)
+		,(error) => console.log(error));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

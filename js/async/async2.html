@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//await命令后面是一个promise,如果不是就会转换立即resolve的promise对象
+
+		//如果不想出错了立刻跳出，那么就要在函数中使用try/catch
+		async function f() {
+		  try {
+		    await Promise.reject('出错了');
+		  } catch(e) {
+		  }
+		  return await Promise.resolve('hello world');
+		}
+
+		f()
+		.then(v => console.log(v))
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
